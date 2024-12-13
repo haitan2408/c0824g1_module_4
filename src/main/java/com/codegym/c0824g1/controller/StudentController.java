@@ -32,6 +32,7 @@ public class StudentController {
 //        List<Student> students = studentService.getAll();
 //        model.addAttribute("students", students);
 //        return "student/list";
+        System.out.println("hello");
         return new ModelAndView("student/list", "students", studentService.getAll());
     }
 }
