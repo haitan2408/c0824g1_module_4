@@ -22,7 +22,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void save(Student s) {
-//    studentRepository.save(s);
+    studentRepository.save(s);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public void remove(int id) {
-//        studentRepository.remove(id);
+        studentRepository.remove(id);
     }
 
     @Override

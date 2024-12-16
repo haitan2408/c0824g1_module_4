@@ -22,4 +22,18 @@ public class StudentRepository {
 
         return students;
     }
+
+    public void save(Student s) {
+        s.setId(students.get(students.size()-1).getId() + 1);
+        students.add(s);
+    }
+
+    public void remove(int id) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getId() == id) {
+                students.remove(i);
+                break;
+            }
+        }
+    }
 }

@@ -45,7 +45,7 @@
     </div>
 </nav>
 <div class="container mt-5">
-    <button class="btn btn-primary" type="button" onclick="window.location.href='/students?action=add'">Create</button>
+    <button class="btn btn-primary" type="button" onclick="window.location.href='/student/create'">Create</button>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -90,7 +90,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary"  onclick="window.location.href='/students?action=remove&id=${student.id}'">Confirm</button>
+                                    <button type="button" class="btn btn-primary"  onclick="window.location.href='/student/${student.id}/delete'">Confirm</button>
                                 </div>
                             </div>
                         </div>
@@ -100,9 +100,15 @@
         </c:forEach>
         </tbody>
     </table>
+   <c:if test="${message != null}"> <div class="alert alert-success" role="alert" id="message">${message}</div></c:if>
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+<script>
+    setTimeout(function () {
+        document.getElementById("message").remove();
+    }, 3000)
+</script>
 </html>

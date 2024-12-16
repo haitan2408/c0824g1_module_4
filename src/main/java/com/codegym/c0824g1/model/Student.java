@@ -22,6 +22,14 @@ public class Student {
         this.idClass = idClass;
     }
 
+    public Student(String nameStudent, String email, Float point, String dob, String idClass) {
+        this.name = nameStudent;
+        this.email = email;
+        this.point = point;
+        this.dob = LocalDate.parse(dob);
+        this.idClass = Integer.parseInt(idClass);
+    }
+
 //    public Student(String name, String email, Float point, LocalDate dob, Integer idClass) {
 //        this.name = name;
 //        this.email = email;
