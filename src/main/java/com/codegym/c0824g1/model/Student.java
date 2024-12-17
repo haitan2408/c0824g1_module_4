@@ -1,5 +1,7 @@
 package com.codegym.c0824g1.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class Student {
@@ -7,6 +9,7 @@ public class Student {
     private String name;
     private String email;
     private Float point;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
     private Integer idClass;
 

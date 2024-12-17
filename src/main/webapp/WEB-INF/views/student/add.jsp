@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Student</title>
@@ -43,32 +44,43 @@
     </div>
 </nav>
 <div class="container mt-5">
-    <form method="post" action="/student/create">
+    <c:if test="${not empty errors}">
+        <div class="alert alert-danger">
+            <c:forEach var="error" items="${errors}">
+                <li>${error.defaultMessage}</li>
+            </c:forEach>
+        </div>
+    </c:if>
+    <form:form method="post" action="/student/create" modelAttribute="student">
         <div class="mb-3">
             <label for="inputName" class="form-label">Name</label>
-            <input type="text" class="form-control" name="name" id="inputName" required maxlength="100" pattern="^[a-zA-Z ]+$">
+            <form:input type="text" class="form-control" name="name" id="inputName" pattern="^[a-zA-Z ]+$" path="name"/>
         </div>
         <div class="mb-3">
             <label for="inputEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" name="email" id="inputEmail" >
+            <form:input type="email" class="form-control" name="email" id="inputEmail" path="email"/>
         </div>
         <div class="mb-3">
             <label for="inputPoint" class="form-label">Point</label>
-            <input type="number" class="form-control" name="point" id="inputPoint" min="0" max="100">
+            <form:input type="number" class="form-control" name="point" id="inputPoint" min="0" max="100" path="point"/>
         </div>
         <div class="mb-3">
             <label for="inputDOB" class="form-label">DOB</label>
-            <input type="date" class="form-control" name="dob" id="inputDOB"  >
+            <form:input type="date" class="form-control" name="dob" id="inputDOB" path="dob"/>
         </div>
         <div class="mb-3">
             <label for="classname" class="form-label">Class</label>
-            <input type="text" class="form-control" name="idClass" id="classname"  >
+            <form:select path="idClass" class="form-select" name="idClass" id="classname">
+                <form:option value="">---Chọn lớp---</form:option>
+                <form:options items="${classrooms}"></form:options>
+            </form:select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </form:form>
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+
 </html>
