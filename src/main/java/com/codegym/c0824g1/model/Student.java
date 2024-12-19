@@ -2,15 +2,34 @@ package com.codegym.c0824g1.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
+@Entity(name = "students")
 public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", columnDefinition = "INT")
     private Integer id;
+
+    @Column(name = "name_student", columnDefinition = "VARCHAR(100)", nullable = false)
     private String name;
+
+    @Column(name = "email", columnDefinition = "VARCHAR(100)", nullable = false)
     private String email;
+
+    @Column(name = "score", columnDefinition = "DOUBLE")
     private Float point;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
+
+    @Column(name = "id_class")
     private Integer idClass;
 
     public Student() {
