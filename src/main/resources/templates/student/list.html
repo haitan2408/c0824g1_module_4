@@ -21,13 +21,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="student, stat : ${students}">
+        <tr th:each="student, stat : ${students.content}">
             <td th:text="${stat.count}"></td>
             <td th:text="${student.name}"></td>
             <td th:text="${student.email}"></td>
             <td th:text="${student.point}"></td>
             <td th:text="${student.dob}"></td>
-            <td th:text="${student.idClass}"></td>
+            <td th:text="${student.classroom.getNameClass()}"></td>
             <td>
                 <button class="btn btn-warning"><a th:href="@{/student/{id}/update(id=${student.id})}"> Update</a>
                 </button>
@@ -65,6 +65,20 @@
         </tr>
         </tbody>
     </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" th:if="${students.hasPrevious()}">
+                <a class="page-link" th:href="@{/student(page=${students.number-1}, name=${name})}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item" th:if="${students.hasNext()}">
+                <a class="page-link" th:href="@{/student(page=${students.number+1}, name=${name})}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
     <div th:if="${message != null}" class="alert alert-success" role="alert" id="message" th:text="${message}"></div>
 </div>
 </body>

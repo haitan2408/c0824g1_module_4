@@ -1,6 +1,7 @@
 package com.codegym.c0824g1_spring_boot.controller;
 
 import com.codegym.c0824g1_spring_boot.model.Student;
+import com.codegym.c0824g1_spring_boot.service.IClassroomService;
 import com.codegym.c0824g1_spring_boot.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,9 @@ public class StudentController {
     @Autowired
     private IStudentService studentService;
 
+    @Autowired
+    private IClassroomService classroomService;
+
 //    Constructor DI
 //    private final IStudentService studentService;
 //
@@ -32,15 +36,15 @@ public class StudentController {
 //
 
     @GetMapping("")
-    public ModelAndView viewAllStudent(Model model, @RequestParam(defaultValue = "") String name) {
+    public ModelAndView viewAllStudent(Model model, @RequestParam(defaultValue = "") String name, @RequestParam(name = "page", defaultValue = "0")Integer page) {
         model.addAttribute("name", name);
-        return new ModelAndView("student/list", "students", studentService.findByName(name));
+        return new ModelAndView("student/list", "students", studentService.findByName(name, page));
     }
 
     @GetMapping("/create")
     public String viewAddStudent(Model model) {
         model.addAttribute("student", new Student());
-        model.addAttribute("classrooms", new String[]{"1", "2", "3"});
+        model.addAttribute("classrooms", classroomService.getAll());
         return "student/add";
     }
 

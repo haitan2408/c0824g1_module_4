@@ -1,52 +1,27 @@
 package com.codegym.c0824g1_spring_boot.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDate;
 
+@Entity(name = "classrooms")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Classroom {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nameClass;
     private LocalDate startDate;
     private LocalDate endDate;
-
-    public Classroom() {
-    }
-
-    public Classroom(Integer id, String nameClass, LocalDate startDate, LocalDate endDate) {
-        this.id = id;
-        this.nameClass = nameClass;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNameClass() {
-        return nameClass;
-    }
-
-    public void setNameClass(String nameClass) {
-        this.nameClass = nameClass;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
 }

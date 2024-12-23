@@ -32,9 +32,9 @@
         </div>
         <div class="mb-3">
             <label for="classname" class="form-label">Class</label>
-            <select class="form-select" id="classname" th:field="*{idClass}">
+            <select class="form-select" id="classname" th:field="*{classroom}">
                 <option value="">---Chọn lớp---</option>
-                <option th:each="classroom : ${classrooms}" th:value="${classroom}" th:text="${classroom}"></option>
+                <option th:each="classroom : ${classrooms}" th:value="${classroom.id}" th:text="${classroom.nameClass}"></option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

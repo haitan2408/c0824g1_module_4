@@ -5,6 +5,10 @@ import com.codegym.c0824g1_spring_boot.model.Student;
 import com.codegym.c0824g1_spring_boot.repository.StudentRepository;
 import com.codegym.c0824g1_spring_boot.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,4 +49,8 @@ public class StudentService implements IStudentService {
         return studentRepository.findAllByNameContainingIgnoreCase(name);
     }
 
+    @Override
+    public Page<Student> findByName(String name, Integer page) {
+        return studentRepository.findAllByNameContainingIgnoreCase(name, PageRequest.of(page, 5));
+    }
 }
