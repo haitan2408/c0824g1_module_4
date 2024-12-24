@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,12 +50,12 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    public String addStudent(@ModelAttribute("student") Student student,
+    public String addStudent(@Validated @ModelAttribute("student") Student student,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
-            model.addAttribute("classrooms", new String[]{"1", "2", "3"});
+            model.addAttribute("classrooms", classroomService.getAll());
             return "student/add";
         }
         studentService.save(student);
